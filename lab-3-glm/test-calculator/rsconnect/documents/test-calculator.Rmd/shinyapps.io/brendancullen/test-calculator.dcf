@@ -1,0 +1,12 @@
+name: test-calculator
+title: test-calculator
+username:
+account: brendancullen
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1904028
+bundleId: 2851879
+url: https://brendancullen.shinyapps.io/test-calculator/
+when: 1583359484.79727
+asMultiple: FALSE
+asStatic: FALSE
