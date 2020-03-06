@@ -1,0 +1,36 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: resizer.html
+runtime: shiny_prerendered
+---
+
+
+```{r setup, include=FALSE}
+library(learnr)
+library(tidyverse)
+library(carData)
+knitr::opts_chunk$set(echo = FALSE, exercise.cap = "t-test")
+
+guyer <- carData::Guyer
+guyer <-  guyer %>% 
+  mutate(condition = case_when(condition == "public" ~ 0,
+                               condition == "anonymous" ~ 1))
+
+```
+
+
+```{r lab-3-glm-ex6, exercise=TRUE}
+t_test <- ___(formula = ___ ~ ___, data = ___, var.equal = ___)
+t_test
+```
+
+
+```{r lab-3-glm-ex6-solution}
+t_test <- t.test(formula = cooperation ~ condition, data = guyer, var.equal = TRUE)
+t_test
+```
+
+
+<div data-iframe-height></div>
