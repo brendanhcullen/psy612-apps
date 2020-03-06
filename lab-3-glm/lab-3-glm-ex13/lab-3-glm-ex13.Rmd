@@ -1,0 +1,46 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: resizer.html
+runtime: shiny_prerendered
+---
+
+
+```{r setup, include=FALSE}
+library(learnr)
+library(tidyverse)
+knitr::opts_chunk$set(echo = FALSE, exercise.cap = "Minihack 1.2")
+
+guyer <- carData::Guyer
+guyer <-  guyer %>% 
+  mutate(condition = case_when(condition == "public" ~ 0,
+                               condition == "anonymous" ~ 1))
+
+x <- guyer %>% 
+  mutate(ones = rep(1, nrow(.))) %>% # create a column of 1's to represent the intercept
+  select(ones, condition) %>% # select only the column of 1's and X variable
+  as.matrix() %>% # coerce to a matrix
+  unname() # get rid of dimnames
+
+
+y <- guyer %>% 
+  select(cooperation) %>% # select just the Y variable
+  as.matrix() %>% # coerce to a matrix
+  unname() # get rid of dimnames 
+
+```
+
+
+```{r lab-3-glm-ex13, exercise=TRUE}
+___(___(___) %*% ___) %*% (___(___) %*% ___)
+```
+
+
+```{r lab-3-glm-ex13-solution}
+solve(t(x) %*% x) %*% (t(x) %*% y)
+```
+
+
+
+<div data-iframe-height></div>
