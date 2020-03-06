@@ -5,8 +5,8 @@ account: brendancullen
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 1912072
-bundleId: 2855903
+bundleId: 2855917
 url: https://brendancullen.shinyapps.io/lab-3-glm-ex8/
-when: 1583466275.4956
+when: 1583466858.08338
 asMultiple: FALSE
 asStatic: FALSE

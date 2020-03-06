@@ -11,7 +11,7 @@ runtime: shiny_prerendered
 library(learnr)
 library(tidyverse)
 library(carData)
-knitr::opts_chunk$set(echo = FALSE, exercise.cap = "correlation")
+knitr::opts_chunk$set(echo = FALSE, exercise.cap = "ANOVA")
 
 guyer <- carData::Guyer
 guyer <-  guyer %>% 
