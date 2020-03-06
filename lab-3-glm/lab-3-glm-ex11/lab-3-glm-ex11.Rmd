@@ -10,7 +10,7 @@ runtime: shiny_prerendered
 ```{r setup, include=FALSE}
 library(learnr)
 library(rio)
-knitr::opts_chunk$set(echo = FALSE, exercise.cap = "confint()")
+knitr::opts_chunk$set(echo = FALSE, exercise.cap = "Minihack 2.2")
 
 health <- import("https://raw.githubusercontent.com/brendanhcullen/psy612/master/labs/lab-3/data/consc_health.csv")
 model <- lm(sr_health ~ consc, data = health)
