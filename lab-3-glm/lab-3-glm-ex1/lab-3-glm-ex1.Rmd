@@ -1,0 +1,31 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: resizer.html
+runtime: shiny_prerendered
+---
+
+
+```{r setup, include=FALSE}
+library(learnr)
+library(rio)
+knitr::opts_chunk$set(echo = FALSE, exercise.cap = "model")
+
+health <- import("https://raw.githubusercontent.com/brendanhcullen/psy612/master/labs/lab-3/data/consc_health.csv")
+```
+
+
+```{r lab-3-glm-ex1, exercise=TRUE}
+model <- lm(___ ~ ___, data = ___)
+summary(model)
+```
+
+
+```{r lab-3-glm-ex1-solution}
+model <- lm(sr_health ~ consc, data = health)
+summary(model)
+```
+
+
+<div data-iframe-height></div>
