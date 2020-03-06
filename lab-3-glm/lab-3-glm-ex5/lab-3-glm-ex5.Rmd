@@ -1,0 +1,46 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: resizer.html
+runtime: shiny_prerendered
+---
+
+
+```{r setup, include=FALSE}
+library(learnr)
+library(rio)
+library(tidyverse)
+knitr::opts_chunk$set(echo = FALSE, exercise.cap = "matrix-algebra")
+
+health <- import("https://raw.githubusercontent.com/brendanhcullen/psy612/master/labs/lab-3/data/consc_health.csv")
+
+x_mat <- health %>% # start with the original data frame
+  mutate(ones = rep(1, nrow(.))) %>% # create a column of 1's to represent the intercept
+  select(ones, consc) %>% # select only the column of 1's and X variable
+  as.matrix() %>%  # coerce to a matrix
+  unname() # get rid of dimnames 
+
+y_mat <- health %>% # start with the original data frame
+  select(sr_health) %>% # select just the Y variable
+  as.matrix() %>% # coerce to a matrix
+  unname() # get rid of dimnames 
+```
+
+
+```{r lab-3-glm-ex5, exercise=TRUE}
+___(___(x_mat) %*% x_mat) %*% (___(x_mat) %*% y_mat)
+```
+
+
+```{r lab-3-glm-ex5-solution}
+solve(t(x_mat) %*% x_mat) %*% (t(x_mat) %*% y_mat)
+```
+
+
+```{r lab-3-glm-ex5-hint}
+#Hint: You can use `solve()` and `t()` to get the inverse and transpose of a matrix, respectively.
+```
+
+
+<div data-iframe-height></div>
