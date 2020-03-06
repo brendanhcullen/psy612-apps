@@ -1,0 +1,41 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: resizer.html
+runtime: shiny_prerendered
+---
+
+
+```{r setup, include=FALSE}
+library(learnr)
+library(tidyverse)
+library(carData)
+knitr::opts_chunk$set(echo = FALSE, exercise.cap = "correlation")
+
+guyer <- carData::Guyer
+guyer <-  guyer %>% 
+  mutate(condition = case_when(condition == "public" ~ 0,
+                               condition == "anonymous" ~ 1))
+
+```
+
+
+```{r lab-3-glm-ex7, exercise=TRUE}
+cor_test <- ___(formula = ~ ___ + ___, data = ___) 
+cor_test
+```
+
+
+```{r lab-3-glm-ex7-solution}
+cor_test <- cor.test(formula = ~ cooperation + condition, data = guyer)
+cor_test
+```
+
+
+```{r lab-3-glm-ex7-hint}
+# Hint: You can use a one-sided formula. 
+```
+
+
+<div data-iframe-height></div>
