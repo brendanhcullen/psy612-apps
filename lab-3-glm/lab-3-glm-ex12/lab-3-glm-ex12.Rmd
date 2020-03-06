@@ -1,0 +1,59 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: resizer.html
+runtime: shiny_prerendered
+---
+
+
+```{r setup, include=FALSE}
+library(learnr)
+library(tidyverse)
+knitr::opts_chunk$set(echo = FALSE, exercise.cap = "Minihack 1.1")
+
+guyer <- carData::Guyer
+guyer <-  guyer %>% 
+  mutate(condition = case_when(condition == "public" ~ 0,
+                               condition == "anonymous" ~ 1))
+```
+
+
+```{r lab-3-glm-ex12, exercise=TRUE}
+x <- guyer %>% 
+  ___(ones = ___(1, nrow(.))) %>% # create a column of 1's to represent the intercept
+  select(ones, ___) %>% # select only the column of 1's and X variable
+  as.___() %>% # coerce to a matrix
+  unname() # get rid of dimnames
+
+x
+
+y <- guyer %>% 
+  select(___) %>% # select just the Y variable
+  as.___() %>% # coerce to a matrix
+  unname() # get rid of dimnames 
+
+y
+```
+
+
+```{r lab-3-glm-ex12-solution}
+x <- guyer %>% 
+  mutate(ones = rep(1, nrow(.))) %>% # create a column of 1's to represent the intercept
+  select(ones, condition) %>% # select only the column of 1's and X variable
+  as.matrix() %>% # coerce to a matrix
+  unname() # get rid of dimnames
+
+x
+
+y <- guyer %>% 
+  select(cooperation) %>% # select just the Y variable
+  as.matrix() %>% # coerce to a matrix
+  unname() # get rid of dimnames 
+
+y
+```
+
+
+
+<div data-iframe-height></div>
