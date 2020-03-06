@@ -1,0 +1,36 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: resizer.html
+runtime: shiny_prerendered
+---
+
+
+```{r setup, include=FALSE}
+library(learnr)
+library(tidyverse)
+library(carData)
+knitr::opts_chunk$set(echo = FALSE, exercise.cap = "correlation")
+
+guyer <- carData::Guyer
+guyer <-  guyer %>% 
+  mutate(condition = case_when(condition == "public" ~ 0,
+                               condition == "anonymous" ~ 1))
+
+```
+
+
+```{r lab-3-glm-ex8, exercise=TRUE}
+anova_test <- ___(formula = ___ ~ condition, data = ___)
+summary(anova_test)
+```
+
+
+```{r lab-3-glm-ex8-solution}
+anova_test <- aov(formula = cooperation ~ condition, data = guyer)
+summary(anova_test)
+```
+
+
+<div data-iframe-height></div>
