@@ -1,0 +1,35 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: resizer.html
+runtime: shiny_prerendered
+---
+
+
+```{r setup, include=FALSE}
+library(learnr)
+library(rio)
+library(tidyverse)
+knitr::opts_chunk$set(echo = FALSE, exercise.cap = "predict-new")
+
+health <- import("https://raw.githubusercontent.com/brendanhcullen/psy612/master/labs/lab-3/data/consc_health.csv")
+
+consc_data_new <- import("https://raw.githubusercontent.com/uopsych/psy612/master/labs/lab-3/data/consc_new.csv")
+
+model <- lm(sr_health ~ consc, data = health)
+
+```
+
+
+```{r lab-3-glm-ex4, exercise=TRUE}
+predict(___, newdata = ___)
+```
+
+
+```{r lab-3-glm-ex4-solution}
+predict(model, newdata = consc_data_new)
+```
+
+
+<div data-iframe-height></div>
