@@ -1,0 +1,33 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: resizer.html
+runtime: shiny_prerendered
+---
+
+
+```{r setup, include=FALSE}
+library(learnr)
+library(tidyverse)
+knitr::opts_chunk$set(echo = FALSE, exercise.cap = "Minihack 1.3")
+
+guyer <- carData::Guyer
+guyer <-  guyer %>% 
+  mutate(condition = case_when(condition == "public" ~ 0,
+                               condition == "anonymous" ~ 1))
+```
+
+
+```{r lab-3-glm-ex14, exercise=TRUE}
+model <- ___(___ ~ ___, data = ___)
+___$coefficients
+```
+
+
+```{r lab-3-glm-ex14-solution}
+model <- lm(cooperation ~ condition, data = guyer)
+model$coefficients
+```
+
+<div data-iframe-height></div>
