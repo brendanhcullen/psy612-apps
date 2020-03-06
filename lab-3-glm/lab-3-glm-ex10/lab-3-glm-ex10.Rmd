@@ -1,0 +1,80 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: resizer.html
+runtime: shiny_prerendered
+---
+
+
+```{r setup, include=FALSE}
+library(learnr)
+library(rio)
+knitr::opts_chunk$set(echo = FALSE, exercise.cap = "confidence intervals")
+
+health <- import("https://raw.githubusercontent.com/brendanhcullen/psy612/master/labs/lab-3/data/consc_health.csv")
+```
+
+
+```{r lab-3-glm-ex10, exercise=TRUE}
+# Run the model and summarize
+model <- lm(sr_health ~ consc, data = health)
+model_summary <- summary(model)
+
+# extract coefficients
+intercept <- model_summary$coefficients[[___,___]]
+slope <- model_summary$coefficients[[___,___]]
+
+# extract standard errors of coefficients
+intercept_se <- model_summary$coefficients[[___,___]]
+slope_se <- model_summary$coefficients[[___,___]]
+
+# df for t-distribution (will be denominator df from F statistic)
+df <- model_summary$fstatistic[["dendf"]]
+
+# intercept 95% CI 
+intercept_ci_lower <- ___ - ___(.975, df = df)*intercept_se
+intercept_ci_upper <- ___ + ___(.975, df = df)*intercept_se
+
+# slope 95% CI 
+slope_ci_lower <- ___ - ___(.975, df = df)*slope_se
+slope_ci_upper <- ___ + ___(.975, df = df)*slope_se
+
+# print results
+print(paste0("Intercept 95% CI = ", "[", round(intercept_ci_lower, 2), ",", round(intercept_ci_upper, 2), "]"))
+print(paste0("Slope 95% CI = ", "[", round(slope_ci_lower, 2), ",", round(slope_ci_upper, 2), "]"))
+```
+
+
+```{r lab-3-glm-ex10-solution}
+# Run the model and summarize
+model <- lm(sr_health ~ consc, data = health)
+model_summary <- summary(model)
+
+# extract coefficients
+intercept <- model_summary$coefficients[[1,1]]
+slope <- model_summary$coefficients[[2,1]]
+
+# extract standard errors of coefficients
+intercept_se <- model_summary$coefficients[[1,2]]
+slope_se <- model_summary$coefficients[[2,2]]
+
+# df for t-distribution (will be denominator df from F statistic)
+df <- model_summary$fstatistic[["dendf"]]
+
+# intercept 95% CI 
+intercept_ci_lower <- intercept - qt(.975, df = df)*intercept_se
+intercept_ci_upper <- intercept + qt(.975, df = df)*intercept_se
+
+# slope 95% CI 
+slope_ci_lower <- slope - qt(.975, df = df)*slope_se
+slope_ci_upper <- slope + qt(.975, df = df)*slope_se
+
+# print results
+print(paste0("Intercept 95% CI = ", "[", round(intercept_ci_lower, 2), ",", round(intercept_ci_upper, 2), "]"))
+print(paste0("Slope 95% CI = ", "[", round(slope_ci_lower, 2), ",", round(slope_ci_upper, 2), "]"))
+```
+
+
+
+<div data-iframe-height></div>
